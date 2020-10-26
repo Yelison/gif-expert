@@ -1,18 +1,15 @@
 import React, { useState } from 'react'
+import AddCategory from './components/AddCategory';
 
 const GifExpertApp = () => {
     const [categories, setCategories] = useState(["My hero academy", "Kimetsu no yaiba", "shingeki no kiogin"]);
-
-    const handleAdd = () => {
-        setCategories([...categories, "New hero"]);
-
-    }
 
     return (
         <>
            <h2>GifExpertApp</h2>
            <hr/>
-            <button onClick={ handleAdd }> Agregar nuevo heroe</button>
+
+            <AddCategory setCategories={ setCategories }/>
            <ol>
                {categories.map((category => {
                    return <li key={ category }> { category } </li>
