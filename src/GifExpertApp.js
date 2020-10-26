@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import AddCategory from './components/AddCategory';
+import GifGird from './components/GifGird';
 
 const GifExpertApp = () => {
-    const [categories, setCategories] = useState(["My hero academy", "Kimetsu no yaiba", "shingeki no kiogin"]);
+    const [categories, setCategories] = useState(["My hero academy"]);
 
     return (
         <>
@@ -11,9 +12,11 @@ const GifExpertApp = () => {
 
             <AddCategory setCategories={ setCategories }/>
            <ol>
-               {categories.map((category => {
-                   return <li key={ category }> { category } </li>
-               }))}
+               {categories.map((category => 
+                <GifGird 
+                    key={ category }
+                    category={ category }
+                    />))}
            </ol>
         </>
     )
