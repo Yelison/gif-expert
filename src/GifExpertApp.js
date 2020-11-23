@@ -3,7 +3,7 @@ import AddCategory from './components/AddCategory';
 import GifGird from './components/GifGird';
 
 const GifExpertApp = () => {
-    const [categories, setCategories] = useState(["My hero academy"]);
+    const [categories, setCategories] = useState([]);
 
     return (
         <>
@@ -11,13 +11,11 @@ const GifExpertApp = () => {
            <hr/>
 
             <AddCategory setCategories={ setCategories }/>
-           <ol>
                {categories.map((category => 
                 <GifGird 
                     key={ category }
                     category={ category }
                     />))}
-           </ol>
         </>
     )
 }

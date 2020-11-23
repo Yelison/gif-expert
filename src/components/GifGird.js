@@ -1,29 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import GifItem from "./GifItem";
+import { getGifs } from "../helpers/getGifs";
+import { useFetchGifs } from "../hooks/useFetchGifs";
 
 const GifGird = ({ category }) => {
+  const { data:images, loading } = useFetchGifs( category );
 
-    const getGifs = async () => {
-        const url = 'https://api.giphy.com/v1/gifs/search?q=My+hero+academy&limit=10&api_key=4ROcDwziMCHNgP4m8Q4VdaL7xC9I4f2Y';
+  return (
+    <>
+      <h3> {category} </h3>
+      {loading && <p>Cargando...</p>}
+      <div className="card-grid animate__animated animate__pulse">
+        {images.map((img) => (
+            <GifItem key={img.id} {...img} />
+        ))}
+      </div>
+    </>
+  );
+};
 
-        const resp = await fetch(url);
-        const { data } = await resp.json();
-
-        const gifs = data.map(img => {
-            return {
-                id: img.id,
-                title: img.title,
-                url: img.images?.downsized_medium.url
-            }
-        })
-        console.log(gifs);
-    }
-
-    getGifs();
-    return (
-        <div>
-            <h3> { category } </h3>
-        </div>
-    )
-}
-
-export default GifGird
+export default GifGird;
